@@ -95,11 +95,13 @@ class _ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
       padding: widget.bottomSheetPadding,
       child: Wrap(
         children: <Widget>[
+          if(widget.preferredCameraDevice == ImageSource.camera)
           ListTile(
             leading: widget.cameraIcon,
             title: widget.cameraLabel,
             onTap: () => _onPickImage(ImageSource.camera),
           ),
+          if(widget.preferredCameraDevice == ImageSource.gallery)
           ListTile(
             leading: widget.galleryIcon,
             title: widget.galleryLabel,
