@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:image_picker_platform_interface/src/types/image_source.dart';
+  
 class ImageSourceBottomSheet extends StatefulWidget {
   /// Optional maximum height of image
   final double? maxHeight;
@@ -21,6 +22,9 @@ class ImageSourceBottomSheet extends StatefulWidget {
   /// `ImageSource.gallery`. It is also ignored if the chosen camera is not
   /// supported on the device. Defaults to `CameraDevice.rear`.
   final CameraDevice preferredCameraDevice;
+  
+  /// Used to show only one or both sources of image;
+  final ImageSource preferredSource;
 
   /// Callback when an image is selected.
   final void Function(Iterable<XFile> files) onImageSelected;
@@ -40,6 +44,7 @@ class ImageSourceBottomSheet extends StatefulWidget {
     this.maxWidth,
     this.imageQuality,
     this.preferredCameraDevice = CameraDevice.rear,
+    this.preferredSource = ImageSource.camera,
     required this.onImageSelected,
     this.cameraIcon,
     this.galleryIcon,
@@ -95,13 +100,13 @@ class _ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
       padding: widget.bottomSheetPadding,
       child: Wrap(
         children: <Widget>[
-          if(widget.preferredCameraDevice == ImageSource.camera)
+          if(widget.preferredSource == ImageSource.camera)
           ListTile(
             leading: widget.cameraIcon,
             title: widget.cameraLabel,
             onTap: () => _onPickImage(ImageSource.camera),
           ),
-          if(widget.preferredCameraDevice == ImageSource.gallery)
+          if(widget.preferredSource == ImageSource.gallery)
           ListTile(
             leading: widget.galleryIcon,
             title: widget.galleryLabel,
