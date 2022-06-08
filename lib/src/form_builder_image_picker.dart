@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_platform_interface/src/types/image_source.dart';
 
 import 'image_source_sheet.dart';
 
@@ -43,6 +44,9 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
   /// supported on the device. Defaults to `CameraDevice.rear`. See [ImagePicker].
   final CameraDevice preferredCameraDevice;
 
+  /// Used to show only one or both sources of image;
+  final ImageSource preferredSource;
+  
   /// use this to get an image from a custom object to either [Uint8List] or [XFile] or [String] (url) or [ImageProvider]
   ///
   /// ```dart
@@ -88,6 +92,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
     this.maxWidth,
     this.imageQuality,
     this.preferredCameraDevice = CameraDevice.rear,
+    this.preferredSource = ImageSource.camera,
     this.onImage,
     this.maxImages,
     this.cameraIcon = const Icon(Icons.camera_enhance),
@@ -231,6 +236,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 remainingImages: remainingImages,
                                 imageQuality: imageQuality,
                                 preferredCameraDevice: preferredCameraDevice,
+                                preferredSource: preferredSource,
                                 bottomSheetPadding: bottomSheetPadding,
                                 cameraIcon: cameraIcon,
                                 cameraLabel: cameraLabel,
