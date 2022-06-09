@@ -203,6 +203,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                     } else {
                       return GestureDetector(
                         key: UniqueKey(),
+                        behavior: HitTestBehavior.translucent,
                         child: placeholderImage != null
                             ? Image(
                                 width: previewWidth,
